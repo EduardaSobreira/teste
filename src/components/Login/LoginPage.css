@@ -1,0 +1,76 @@
+.login-container {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(180deg, #218A3D 20%, #B1B1B1 100%);
+}
+
+.image-section {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* Alinha a imagem no canto direito */
+  align-items: flex-end; /* Alinha a imagem na parte inferior */
+  padding-right: 1px; /* Espaçamento à direita */
+}
+
+.image-section img {
+  max-width: 100%; /* Garante que a imagem não ultrapasse o tamanho do container */
+  max-height: 100%; /* Garante que a imagem não ultrapasse a altura do container */
+}
+
+.image-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%; /* Largura da área verde */
+  height: 50%; /* Altura da área verde */
+  background: linear-gradient(180deg, #218A3D 34.5%, #B1B1B1 100%); /* Cores verdes no lado direito */
+  z-index: -1; /* Coloca atrás da imagem */
+}
+
+.login-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff; /* Fundo branco para o lado esquerdo */
+  z-index: 1; /* Coloca na frente da imagem */
+}
+
+.login-section h2 {
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-bottom: 17px;
+  width: 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 180px;
+  background-color: #065d2f;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #065d2f;
+}
