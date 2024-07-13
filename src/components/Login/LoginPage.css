@@ -11,12 +11,15 @@
   justify-content: flex-end; /* Alinha a imagem no canto direito */
   align-items: flex-end; /* Alinha a imagem na parte inferior */
   padding-right: 1px; /* Espaçamento à direita */
+  overflow: hidden; /* Garante que a imagem não ultrapasse os limites da seção */
 }
 
 .image-section img {
-  max-width: 100%; /* Garante que a imagem não ultrapasse o tamanho do container */
-  max-height: 100%; /* Garante que a imagem não ultrapasse a altura do container */
+  width: 100%; /* Faz a imagem preencher a largura da seção */
+  height: 100%; /* Faz a imagem preencher a altura da seção */
+  object-fit: cover; /* Garante que a imagem cubra a seção */
 }
+
 
 .image-section::after {
   content: '';

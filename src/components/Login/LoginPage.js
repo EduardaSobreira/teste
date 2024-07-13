@@ -1,40 +1,34 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import './LoginPage.css';
-import imagem from '../../img/Group.png';
+import imagem from '../../img/image.png';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
 
-    const credentials = btoa(`${email}:${password}`);
-    try {
-      const response = await fetch('http://localhost:8080/auth', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Basic ${credentials}`
-        }
-      });
+    // Simulação de sucesso de login
+    if (email === 'user@example.com' && password === 'password') {
+      const token = 'fake-jwt-token';
+      localStorage.setItem('jwtToken', token); // Armazena o token JWT
 
-      if (response.status === 200) {
-        const data = await response.json();
-        const token = data.response.token;
-        localStorage.setItem('jwtToken', token); // Armazena o token JWT
-        // Redirecionar ou executar outras ações pós-login
-      } else if (response.status === 400) {
-        const data = await response.json();
-        setError(data.response || 'Erro ao autenticar. Por favor, verifique suas credenciais.');
-      } else {
-        setError('Erro desconhecido. Por favor, tente novamente mais tarde.');
-      }
-    } catch (error) {
-      setError('Erro ao conectar com o servidor. Por favor, tente novamente mais tarde.');
+      // Define loggedIn como true para redirecionar
+      setLoggedIn(true);
+    } else {
+      setError('Credenciais inválidas. Por favor, verifique seu email e senha.');
     }
   };
+
+  // Redireciona para a rota '/usertable' se loggedIn for true
+  if (loggedIn) {
+    return <Redirect to="/UserTable" />;
+  }
 
   return (
     <div className="login-container">
