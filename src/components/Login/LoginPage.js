@@ -1,34 +1,21 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Para navegação
 import './LoginPage.css';
 import imagem from '../../img/image.png';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loggedIn, setLoggedIn] = useState(true);
+  const navigate = useNavigate(); // Hook de navegação
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
 
     // Simulação de sucesso de login
-    if (email === 'user@example.com' && password === 'password') {
-      const token = 'fake-jwt-token';
-      localStorage.setItem('jwtToken', token); // Armazena o token JWT
-
-      // Define loggedIn como true para redirecionar
-      setLoggedIn(true);
-    } else {
-      setError('Credenciais inválidas. Por favor, verifique seu email e senha.');
-    }
+    const token = 'fake-jwt-token';
+    localStorage.setItem('jwtToken', token); // Armazena o token JWT
+    navigate('/usertable'); // Navega para a UserTable
   };
-
-  // Redireciona para a rota '/usertable' se loggedIn for true
-  if (loggedIn) {
-    return <Redirect to="/UserTable" />;
-  }
 
   return (
     <div className="login-container">
@@ -60,8 +47,9 @@ function LoginPage() {
               required 
             />
           </div>
-          {error && <p className="error">{error}</p>}
-          <button type="submit">Login</button>
+          <div className="button"> 
+            <button type="submit">Login</button>
+          </div>
         </form>
       </div>
     </div>
